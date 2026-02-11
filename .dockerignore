@@ -1,0 +1,16 @@
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+README.md
+.next
+.git
+.env
+.env.local
+.env.*
+!.env.example
+.DS_Store
+public/uploads
+test
+tests
+coverage

@@ -1,0 +1,774 @@
+{
+  "webapp_settings": [
+    {
+      "id": "settings-1",
+      "siteName": "MUIC CONNECT",
+      "siteLogo": "/uploads/others/ml05q9i0-images.png?t=1769733662616",
+      "contactEmail": "admin@yuanying.co.th",
+      "contactPhone": "09988721888",
+      "address": "โครงการมหาวิทยาลัยไซเบอร์ไทย\nกระทรวงการอุดมศึกษา วิทยาศาสตร์ วิจัยและนวัตกรรม\n328 ถนนศรีอยุธยา เขตราชเทวี กรุงเทพมหานคร 10400",
+      "facebookUrl": "",
+      "twitterUrl": "",
+      "youtubeUrl": "",
+      "instagramUrl": "",
+      "lineUrl": "",
+      "geminiApiKey": "",
+      "createdAt": "2025-10-01T20:25:20.254Z",
+      "updatedAt": "2026-01-30T01:55:53.946Z",
+      "aboutUs": "MUIC CONNECT Improving lives through learning Learn Anytime, Anywhere. Mahidol University International College: 999 Phutthamonthon 4 Rd., Salaya, Phutthamonthon, Nakhon Pathom 73170",
+      "aboutUsEn": "MUIC CONNECT Improving lives through learning Learn Anytime, Anywhere. Mahidol University International College: 999 Phutthamonthon 4 Rd., Salaya, Phutthamonthon, Nakhon Pathom 73170",
+      "mapUrl": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d576.0709531562361!2d100.53086224865734!3d13.759083311675756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29eb51577d94b%3A0xa0b23e4f1db693f!2sMinistry%20of%20Higher%20Education%2C%20Science%2C%20Research%20and%20Innovation!5e0!3m2!1sen!2sth!4v1763352711010!5m2!1sen!2sth\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "preloaderEnabled": 1,
+      "preloaderTitle": "MUIC CONNECT",
+      "preloaderSubtitle": "รอหน่อยค่อย ๆ ชิน",
+      "preloaderPrimaryColor": "#274da0",
+      "preloaderBackgroundColor": "#ffffff",
+      "chatbotEnabled": 0,
+      "defaultCourseThumbnail": "/uploads/courses/course-miqtgo75.jpg?t=1764815299457",
+      "defaultInstitutionLogo": "/uploads/institutions/institution-miqtgy0k.jpg?t=1764815312180",
+      "defaultNewsImage": "/uploads/news/news-mj2enjak.jpg?t=1765516019564",
+      "lineQrCodeUrl": "/uploads/squares/miqv66it-QrCode.png?t=1764818169221",
+      "lineOfficialId": "Thai-MOOC",
+      "addressEn": "Thailand Cyber University Project (TCU) Ministry of Higher Education, Science, Research and Innovation 328 Si Ayutthaya Road, Ratchathewi District, Bangkok 10400",
+      "footerLogo": "/uploads/others/ml05pshz-muic.png?t=1769733640583",
+      "classroomUrl": null,
+      "smtpHost": "smtp.gmail.com",
+      "smtpPort": 587,
+      "smtpUsername": "raksukgroups@gmail.com",
+      "smtpPassword": "Apk3gbxxc3",
+      "smtpFromEmail": "raksukgroups@gmail.com",
+      "smtpFromName": "jira",
+      "smtpSecure": 1
+    }
+  ],
+  "admin_users": [
+    {
+      "id": "admin-1760580338995",
+      "username": "admin",
+      "password": "$2b$10$.GyBTun2odcTtuLXktCu3eFOWC1CwtmrVlN4mlBsohEZCMvSHSu5K",
+      "name": "Administrator",
+      "email": "admin@thaimooc.ac.th",
+      "role": "super_admin",
+      "isActive": 1,
+      "lastLogin": "2025-12-02T02:56:38.000Z",
+      "createdAt": "2025-10-15T19:05:39.000Z",
+      "updatedAt": "2025-10-16T23:32:06.577Z",
+      "institutionId": null
+    },
+    {
+      "id": "user-1763348691647",
+      "username": "jira",
+      "password": "$2b$10$uXeVPgcaONenQdSpC7dzcun6JuQjEKYAP8c4QZshaSJ78lWhPRCpi",
+      "name": "Jira Chonraksuk",
+      "email": "jira@thaimooc.ac.th",
+      "role": "super_admin",
+      "isActive": 1,
+      "lastLogin": "2026-01-26T07:11:52.000Z",
+      "createdAt": "2025-11-16T20:04:51.647Z",
+      "updatedAt": "2025-11-16T20:04:51.647Z",
+      "institutionId": null
+    }
+  ],
+  "institutions": [
+    {
+      "id": "26001",
+      "name": "มหาวิทยาลัยมหิดล",
+      "nameEn": "Mahidol University",
+      "abbreviation": "MU",
+      "logoUrl": "/uploads/institutions/institution-ml0iz324.png?t=1769755909180",
+      "website": "https://mahidol.ac.th",
+      "description": null,
+      "descriptionEn": null,
+      "createdAt": "2026-01-30T06:52:40.439Z",
+      "updatedAt": "2026-01-30T06:52:40.439Z",
+      "logoVersion": 1,
+      "bannerUrl": null,
+      "primaryColor": null,
+      "secondaryColor": null,
+      "address": null,
+      "addressEn": null,
+      "phoneNumber": null,
+      "email": null,
+      "socialLinks": null,
+      "metaTitle": null,
+      "metaDescription": null,
+      "micrositeEnabled": 0,
+      "mapUrl": null
+    },
+    {
+      "id": "26002",
+      "name": "วิทยาลัยนานาชาติ มหาวิทยาลัยมหิดล",
+      "nameEn": "Mahidol University International College",
+      "abbreviation": "MUIC",
+      "logoUrl": "/uploads/institutions/institution-ml0j0yf0.png?t=1769755996476",
+      "website": "https://muic.mahidol.ac.th",
+      "description": null,
+      "descriptionEn": null,
+      "createdAt": "2026-01-30T06:54:16.681Z",
+      "updatedAt": "2026-01-30T06:54:16.681Z",
+      "logoVersion": 1,
+      "bannerUrl": null,
+      "primaryColor": null,
+      "secondaryColor": null,
+      "address": null,
+      "addressEn": null,
+      "phoneNumber": null,
+      "email": null,
+      "socialLinks": null,
+      "metaTitle": null,
+      "metaDescription": null,
+      "micrositeEnabled": 0,
+      "mapUrl": null
+    }
+  ],
+  "instructors": [
+    {
+      "id": "instr-1769757162835",
+      "name": "Kal Elle",
+      "nameEn": "Kal Elle",
+      "title": "Dr. ",
+      "institutionId": "26002",
+      "bio": null,
+      "imageUrl": "/uploads/instructors/instructor-ml0jpk7u.jpg?t=1769757144474",
+      "email": "kal.ell@mahidol.ac.th",
+      "createdAt": "2026-01-30T07:12:42.835Z",
+      "updatedAt": "2026-01-30T07:12:42.835Z",
+      "imageVersion": 1
+    },
+    {
+      "id": "instr-1769757729374",
+      "name": "Wimonsiri Hemtanon",
+      "nameEn": "Wimonsiri Hemtanon",
+      "title": "None",
+      "institutionId": "26002",
+      "bio": null,
+      "imageUrl": "/uploads/instructors/instructor-ml0k21u7.jpg?t=1769757727183",
+      "email": "wimonsiri.hem@mahidol.ac.th",
+      "createdAt": "2026-01-30T07:22:09.374Z",
+      "updatedAt": "2026-01-30T07:22:09.374Z",
+      "imageVersion": 1
+    },
+    {
+      "id": "instr-1769758145406",
+      "name": "Ramesh Boonratana",
+      "nameEn": "Ramesh Boonratana",
+      "title": "Assoc. Prof. Dr.",
+      "institutionId": "26002",
+      "bio": null,
+      "imageUrl": "/uploads/instructors/instructor-ml0kayow.jpg?t=1769758143008",
+      "email": "ramesh.boo@mahidol.edu",
+      "createdAt": "2026-01-30T07:29:05.406Z",
+      "updatedAt": "2026-01-30T07:29:05.406Z",
+      "imageVersion": 1
+    },
+    {
+      "id": "instr-1769758493335",
+      "name": "Kaewta Muangasame",
+      "nameEn": "Kaewta Muangasame",
+      "title": "Dr.",
+      "institutionId": "26002",
+      "bio": "",
+      "imageUrl": "/uploads/instructors/instructor-ml0kio83.jpg?t=1769758502691",
+      "email": "kaewta.mua@mahidol.ac.edu",
+      "createdAt": "2026-01-30T07:34:53.335Z",
+      "updatedAt": "2026-01-30T07:35:04.402Z",
+      "imageVersion": 1
+    }
+  ],
+  "categories": [
+    {
+      "id": "01",
+      "name": "สุขภาพและการแพทย์",
+      "nameEn": "Health and Medicine",
+      "icon": "Heart",
+      "createdAt": "2025-10-01T20:25:20.212Z",
+      "updatedAt": "2025-10-01T20:25:20.212Z"
+    },
+    {
+      "id": "02",
+      "name": "คณิตศาสตร์และวิทยาศาสตร์",
+      "nameEn": "Math and Science",
+      "icon": "Calculator",
+      "createdAt": "2025-10-01T20:25:20.212Z",
+      "updatedAt": "2025-10-01T20:25:20.212Z"
+    },
+    {
+      "id": "04",
+      "name": "คอมพิวเตอร์และเทคโนโลยี",
+      "nameEn": "Computer and Technology",
+      "icon": "Monitor",
+      "createdAt": "2025-10-01T20:25:20.212Z",
+      "updatedAt": "2025-10-02T07:36:53.726Z"
+    },
+    {
+      "id": "07",
+      "name": "ธุรกิจและการบริหารจัดการ",
+      "nameEn": "Business and Management",
+      "icon": "BriefcaseBusiness",
+      "createdAt": "2025-10-01T20:25:20.212Z",
+      "updatedAt": "2025-10-01T20:25:20.212Z"
+    },
+    {
+      "id": "08",
+      "name": "สังคมและการเมืองการปกครอง",
+      "nameEn": "Politics and Society",
+      "icon": "Handshake",
+      "createdAt": "2025-10-01T20:25:20.212Z",
+      "updatedAt": "2025-12-17T21:25:57.769Z"
+    },
+    {
+      "id": "09",
+      "name": "ภาษาและการสื่อสาร",
+      "nameEn": "Language and Communication",
+      "icon": "Languages",
+      "createdAt": "2025-10-01T20:25:20.212Z",
+      "updatedAt": "2025-10-01T20:25:20.212Z"
+    },
+    {
+      "id": "11",
+      "name": "ทักษะชีวิตและการพัฒนาตนเอง",
+      "nameEn": "Life Skills and Personal",
+      "icon": "Brain",
+      "createdAt": "2025-10-01T20:25:20.212Z",
+      "updatedAt": "2025-10-01T20:25:20.212Z"
+    },
+    {
+      "id": "12",
+      "name": "อาหารและโภชนาการ",
+      "nameEn": "Food and Nutrition",
+      "icon": "Coffee",
+      "createdAt": "2025-10-05T23:28:03.527Z",
+      "updatedAt": "2025-10-05T23:28:03.526Z"
+    }
+  ],
+  "course_types": [
+    {
+      "id": "cmgep6v300001inkqzpum262y",
+      "name": "รายวิชามาตรฐานคุณภาพ",
+      "nameEn": "Quality Standard Course",
+      "description": "รายวิชามาตรฐานคุณภาพ",
+      "createdAt": "2025-10-05T22:36:04.572Z",
+      "updatedAt": "2025-10-09T01:35:13.578Z",
+      "icon": "Trophy"
+    },
+    {
+      "id": "cmgep7sw30002inkqlwzkr0su",
+      "name": "รายวิชาเร่งรัดเสริมทักษะ",
+      "nameEn": "Fast-Track Skill",
+      "description": "รายวิชาเร่งรัดเสริมทักษะ",
+      "createdAt": "2025-10-05T22:36:48.387Z",
+      "updatedAt": "2025-10-09T01:29:14.611Z",
+      "icon": "ScrollText"
+    },
+    {
+      "id": "cmgep8dq30003inkqdxgx6k8q",
+      "name": "รายวิชาระยะสั้น",
+      "nameEn": "Short Course",
+      "description": "รายวิชาระยะสั้น",
+      "createdAt": "2025-10-05T22:37:15.387Z",
+      "updatedAt": "2025-10-09T01:29:04.175Z",
+      "icon": "Scroll"
+    },
+    {
+      "id": "cmgj141tr0000inq1wlor7y8o",
+      "name": "รายวิชาเทียบโอนหน่วยกิต",
+      "nameEn": "Course for Credit",
+      "description": "รายวิชาเทียบโอนหน่วยกิต",
+      "createdAt": "2025-10-08T23:20:53.439Z",
+      "updatedAt": "2025-10-08T23:43:29.512Z",
+      "icon": "Award"
+    },
+    {
+      "id": "cmgk8aavb0000in2ewv387t0v",
+      "name": "รายวิชาขอใช้พื้นที่",
+      "nameEn": "Extend Course",
+      "description": "Extend Course",
+      "createdAt": "2025-10-09T19:29:28.583Z",
+      "updatedAt": "2025-10-09T19:29:28.582Z",
+      "icon": "Building"
+    },
+    {
+      "id": "ctype-1765864038994",
+      "name": "รายวิชาแพลตฟอร์มอื่น",
+      "nameEn": "External  Platform",
+      "description": "รายวิชาฝาก link ",
+      "createdAt": "2025-12-16T05:47:18.994Z",
+      "updatedAt": "2025-12-16T05:47:40.830Z",
+      "icon": "Handshake"
+    }
+  ],
+  "courses": [
+    {
+      "id": "course-1769756680846-3",
+      "courseCode": "MUIC004",
+      "title": "Non-verbal communication Skills in Public Speaking",
+      "titleEn": "Non-verbal communication Skills in Public Speaking",
+      "description": "Great ideas deserve a great delivery. Whether you are a student preparing for a thesis defense or a professional leading a boardroom pitch, the way you present is just as important as what you say.\n\"Presence & Impact\" is a dynamic mini-course designed to transform your public speaking skills through the power of non-verbal communication. Across a series of short, high-impact videos, you will learn how to channel nervous energy into confidence, command the room with your posture, and use your voice as a precision instrument.\nStop hiding behind your slides. It’s time to step into the spotlight and deliver your message with authority, authenticity, and style.",
+      "institutionId": "26002",
+      "instructorId": "instr-1769758493335",
+      "imageId": "/uploads/courses/course-ml0l6p19.jpg?t=1769759623485",
+      "level": "Beginner",
+      "durationHours": 12,
+      "hasCertificate": 1,
+      "enrollCount": 1,
+      "createdAt": "2026-01-30T07:04:40.847Z",
+      "updatedAt": "2026-01-30T07:53:45.285Z",
+      "bannerImageId": null,
+      "learningOutcomes": "[\"How to make the best use of posture to convey a message\",\"How to make use of one’s voice for better delivery\",\"How to use hands and facial expressions\",\"How to interact with the slides and the audience during a presentation\"]",
+      "teachingLanguage": "English",
+      "prerequisites": "None",
+      "targetAudience": "Undergraduate students, Graduate students",
+      "tags": "",
+      "courseUrl": "https://muiclms.mahidol.ac.th/courses/course-v1:MUIC+004+1/about",
+      "videoUrl": "https://www.youtube.com/watch?v=H8x-Gs3RzT4",
+      "contentStructure": null,
+      "assessmentCriteria": "70",
+      "imageVersion": 1,
+      "bannerImageVersion": 1,
+      "isActive": 1,
+      "developmentYear": 2026
+    },
+    {
+      "id": "course-1769756680848-5",
+      "courseCode": "MUIC006",
+      "title": "Tourism and Hospitality Management 4.0",
+      "titleEn": "Tourism and Hospitality Management 4.0",
+      "description": "Step into the future of the global travel industry. This course goes beyond the basics to explore how Tourism and Hospitality are evolving in the digital era (Industry 4.0). Students will navigate the entire tourism ecosystem, distinguishing the unique career paths between tourism management and hospitality services.\nThe curriculum emphasizes a holistic approach to Sustainable Tourism, analyzing how the government, private sector, and public communities collaborate to drive development. You will learn to craft cutting-edge business strategies, master the art of service-oriented quality for diverse target markets, and apply Marketing 4.0 principles to create unforgettable, value-driven guest experiences. Prepare to lead the industry with a blend of strategic insight and service excellence.",
+      "institutionId": "26002",
+      "instructorId": "instr-1769758493335",
+      "imageId": "/uploads/courses/course-ml0klfgn.jpg?t=1769758631303",
+      "level": "Beginner",
+      "durationHours": 12,
+      "hasCertificate": 1,
+      "enrollCount": 2,
+      "createdAt": "2026-01-30T07:04:40.848Z",
+      "updatedAt": "2026-01-30T07:37:29.522Z",
+      "bannerImageId": null,
+      "learningOutcomes": "[\"Students can explain the difference of career in tourism and hospitality industry.\",\"Students can explain the importance of sustainable tourism and the main elements of Government, Private, Public sector driven forward sustainable tourism development.\",\"Students can explain the principles of further business development in tourism and Hospitality.\",\"Students can explain the business strategy for tourism and hospitality.\"]",
+      "teachingLanguage": "English",
+      "prerequisites": "None",
+      "targetAudience": "Undergraduate students",
+      "tags": "Tourism",
+      "courseUrl": "https://muiclms.mahidol.ac.th/courses/course-v1:MUIC+006+1/about",
+      "videoUrl": "https://www.youtube.com/watch?v=QXe8I5SMRhw",
+      "contentStructure": null,
+      "assessmentCriteria": "70",
+      "imageVersion": 1,
+      "bannerImageVersion": 1,
+      "isActive": 1,
+      "developmentYear": 2026
+    },
+    {
+      "id": "course-1769756680848-6",
+      "courseCode": "MUIC007",
+      "title": "Science for Life",
+      "titleEn": "Science for Life",
+      "description": "รายวิชานี้ นำเสนอถึงความสำคัญของความรู้พื้นฐานของหัวข้อในทางฟิสิกส์ เคมี ชีววิทยา และคณิตศาสตร์ ที่มีต่อเทคโนโลยี และ ชีวิตประจำวันในยุคปัจจุบัน เช่น การใช้หน่วย ที่มาของพลังงาน ยาและวัคซีนเพื่อสุขภาพ และ การใช้คณิตศาสตร์เพื่ออธิบาย สถิติ การออกแบบ และการสั่งงานด้วยเสียง",
+      "institutionId": "26002",
+      "instructorId": "instr-1769758493335",
+      "imageId": "/uploads/courses/course-ml0kumgs.jpg?t=1769759060284",
+      "level": "Beginner",
+      "durationHours": 12,
+      "hasCertificate": 1,
+      "enrollCount": 1,
+      "createdAt": "2026-01-30T07:04:40.848Z",
+      "updatedAt": "2026-01-30T07:44:44.677Z",
+      "bannerImageId": null,
+      "learningOutcomes": "[\"ผู้เรียนสามารถคำนวณการเปลี่ยนหน่วยได้อย่างถูกต้อง และอธิบายถึงความสำคัญของความแม่นยำในการวัด\",\"ผู้เรียนสามารถคำนวณพลังงานที่ใช้ในชีวิตประจำวัน และเข้าใจถึงที่มาของพลังงานในปัจจุบัน และอนาคต\",\"ผู้เรียนสามารถอธิบายถึงกระบวนการพัฒนาเทคโนโลยีเพื่อสุขภาพ\",\"ผู้เรียนสามารถประยุกต์ใช้คณิตศาสตร์เพื่อแก้ปัญหาในชีวิตประจำวันได้\"]",
+      "teachingLanguage": "Thai",
+      "prerequisites": "",
+      "targetAudience": "นักเรียน นักศึกษา และประชาชนทั่วไป",
+      "tags": "วิทยาศาสตร์, physics, chemistry",
+      "courseUrl": "https://muiclms.mahidol.ac.th/courses/course-v1:MUIC+007+1/about",
+      "videoUrl": "https://www.youtube.com/watch?v=bEJIuuApXbE",
+      "contentStructure": null,
+      "assessmentCriteria": "70%",
+      "imageVersion": 1,
+      "bannerImageVersion": 1,
+      "isActive": 1,
+      "developmentYear": 2026
+    },
+    {
+      "id": "course-1769756680849-7",
+      "courseCode": "MUIC008",
+      "title": "Introduction to Thai Language and Culture",
+      "titleEn": "Introduction to Thai Language and Culture",
+      "description": "This class provide the basic knowledge to the learners to handle basic communicative situations such as asking for and giving directions, ordering food and drinks, asking for prices and bargaining, and buying tickets. Aside from communicative proficiency, this class also provides the related information about Thai society and culture to assist the learner to understand the background of Thai society and culture in more details. The topic provided such as the importance of rice farming and ceremonies involving growing rice and Buddhism in daily life.",
+      "institutionId": "26002",
+      "instructorId": "instr-1769757729374",
+      "imageId": "/uploads/courses/course-ml0jzwxk.jpg?t=1769757627512",
+      "level": "Beginner",
+      "durationHours": 12,
+      "hasCertificate": 1,
+      "enrollCount": 7,
+      "createdAt": "2026-01-30T07:04:40.849Z",
+      "updatedAt": "2026-01-30T08:23:22.919Z",
+      "bannerImageId": null,
+      "learningOutcomes": "[\"students will be able to:handle basic communicative situations such as providing basic information of oneself, greeting and necessary phrase for survival with related social etiquette daily life in Thai circumstance\",\"Address the correct names of places and can conduct the simple directions\",\"Manage food ordering with the special requested. Understand the importance of rice farming and ceremonies involving growing rice and Buddhism in daily life\",\"Handle basic shopping and bargaining conversation\"]",
+      "teachingLanguage": "English",
+      "prerequisites": "None",
+      "targetAudience": "Foreign Learners, General Education",
+      "tags": "Thai Language, Thai culture",
+      "courseUrl": "https://muiclms.mahidol.ac.th/courses/course-v1:MUIC+008+1/about",
+      "videoUrl": "https://www.youtube.com/watch?v=cZpTdH1t1II",
+      "contentStructure": null,
+      "assessmentCriteria": "70",
+      "imageVersion": 1,
+      "bannerImageVersion": 1,
+      "isActive": 1,
+      "developmentYear": 2026
+    },
+    {
+      "id": "course-1769756680849-8",
+      "courseCode": "MUIC009",
+      "title": "Climate Crisis The Whats and the Whys",
+      "titleEn": "Climate Crisis The Whats and the Whys",
+      "description": "The course Climate Crisis: The Whats and the Whys will introduce learners to the basics of global warming and climate change. Learners will also become aware of the causes and consequences of climate change. It will then generate the learners’ knowledge and understanding of the severity of specific human actions and activities that have resulted in the current state of the climate crisis. Finally, the course will allow learners to partake in a discussion on the potential solutions in addressing the climate crisis.",
+      "institutionId": "26002",
+      "instructorId": "instr-1769758145406",
+      "imageId": "/uploads/courses/course-ml0k8ave.jpg?t=1769758018826",
+      "level": "Beginner",
+      "durationHours": 12,
+      "hasCertificate": 1,
+      "enrollCount": 5,
+      "createdAt": "2026-01-30T07:04:40.849Z",
+      "updatedAt": "2026-01-30T08:05:16.706Z",
+      "bannerImageId": null,
+      "learningOutcomes": "[\"Explain the principles of global warming, climate change, and the climate crisis. \",\"Describe the causes and consequences of the climate crisis.\",\"Explore options to address the climate crisis. Participate in constructive group discussions.\"]",
+      "teachingLanguage": "English",
+      "prerequisites": "None",
+      "targetAudience": "Pre-College/University students",
+      "tags": "Climate Crisis, global warming",
+      "courseUrl": "https://muiclms.mahidol.ac.th/courses/course-v1:MUIC+009+1/about",
+      "videoUrl": "https://www.youtube.com/watch?v=D3ZBPLot1Ek",
+      "contentStructure": null,
+      "assessmentCriteria": "70",
+      "imageVersion": 1,
+      "bannerImageVersion": 1,
+      "isActive": 1,
+      "developmentYear": 2026
+    },
+    {
+      "id": "course-1769756680850-9",
+      "courseCode": "MUIC010",
+      "title": "English Email Writing Course for Beginners",
+      "titleEn": "English Email Writing Course for Beginners",
+      "description": "Writing professional emails in English can be a challenging and time-consuming task, especially for those whose English is not their first language. In this course, you will learn to write clearer, more professional emails in English in order to communicate more effectively and to avoid miscommunication. This course aims to reduce stress and burden in composing emails in English and to write more compelling emails overall.",
+      "institutionId": "26002",
+      "instructorId": "instr-1769757162835",
+      "imageId": "/uploads/courses/course-ml0jtwsr.jpg?t=1769757347403",
+      "level": "Beginner",
+      "durationHours": 12,
+      "hasCertificate": 1,
+      "enrollCount": 9,
+      "createdAt": "2026-01-30T07:04:40.850Z",
+      "updatedAt": "2026-01-30T08:19:22.888Z",
+      "bannerImageId": null,
+      "learningOutcomes": "[\"Explain the structure of an email (Subject line, salutation, message/body, closing, sign off, signature block and how to write them appropriately\",\"Explain the 6 strategies of writing emails to communicate effectively\",\"Explain the “Dos and don’ts” in email writing, writing emails in Thailand\",\"Email patterns and cheat sheet for acknowledgment, invitation, gratitude, apology, complaint, reminder, etc\"]",
+      "teachingLanguage": "English",
+      "prerequisites": "None",
+      "targetAudience": "Public Students",
+      "tags": "english, Email Writing",
+      "courseUrl": "https://muiclms.mahidol.ac.th/courses/course-v1:MUIC+010+1/about",
+      "videoUrl": "https://www.youtube.com/watch?v=WeVZZe6CyIQ",
+      "contentStructure": null,
+      "assessmentCriteria": "",
+      "imageVersion": 1,
+      "bannerImageVersion": 1,
+      "isActive": 1,
+      "developmentYear": 2026
+    }
+  ],
+  "course_categories": [
+    {
+      "courseId": "course-1769756680846-3",
+      "categoryId": "09"
+    },
+    {
+      "courseId": "course-1769756680848-5",
+      "categoryId": "09"
+    },
+    {
+      "courseId": "course-1769756680848-6",
+      "categoryId": "02"
+    },
+    {
+      "courseId": "course-1769756680849-7",
+      "categoryId": "09"
+    },
+    {
+      "courseId": "course-1769756680849-8",
+      "categoryId": "02"
+    },
+    {
+      "courseId": "course-1769756680850-9",
+      "categoryId": "09"
+    }
+  ],
+  "course_course_types": [
+    {
+      "courseId": "course-1769756680846-3",
+      "courseTypeId": "cmgep6v300001inkqzpum262y"
+    },
+    {
+      "courseId": "course-1769756680848-5",
+      "courseTypeId": "cmgep6v300001inkqzpum262y"
+    },
+    {
+      "courseId": "course-1769756680848-5",
+      "courseTypeId": "cmgep7sw30002inkqlwzkr0su"
+    },
+    {
+      "courseId": "course-1769756680848-6",
+      "courseTypeId": "cmgep6v300001inkqzpum262y"
+    },
+    {
+      "courseId": "course-1769756680849-7",
+      "courseTypeId": "cmgep6v300001inkqzpum262y"
+    },
+    {
+      "courseId": "course-1769756680849-7",
+      "courseTypeId": "cmgep8dq30003inkqdxgx6k8q"
+    },
+    {
+      "courseId": "course-1769756680849-8",
+      "courseTypeId": "cmgep6v300001inkqzpum262y"
+    },
+    {
+      "courseId": "course-1769756680850-9",
+      "courseTypeId": "cmgep6v300001inkqzpum262y"
+    }
+  ],
+  "course_instructors": [
+    {
+      "courseId": "course-1769756680846-3",
+      "instructorId": "instr-1769758493335"
+    },
+    {
+      "courseId": "course-1769756680848-5",
+      "instructorId": "instr-1769758493335"
+    },
+    {
+      "courseId": "course-1769756680848-6",
+      "instructorId": "instr-1769758493335"
+    },
+    {
+      "courseId": "course-1769756680849-7",
+      "instructorId": "instr-1769757729374"
+    },
+    {
+      "courseId": "course-1769756680849-8",
+      "instructorId": "instr-1769758145406"
+    },
+    {
+      "courseId": "course-1769756680850-9",
+      "instructorId": "instr-1769757162835"
+    }
+  ],
+  "news": [
+    {
+      "id": "news-1",
+      "title": "สร้างความเข้าใจการใช้ระบบ Digital Transformation Platform และ Digital Single View ของสถาบันอุดมศึกษาไทย",
+      "content": "<p>ศาสตราจารย์ ดร.จินตวีร์ คล้ายสังข์ ในโอกาสเข้ารับตำแหน่ง ผู้อำนวยการโครงการมหาวิทยาลัยไซเบอร์ไทย (TCU) นางสาวพุทธชาด วัฒนวิมลกร รักษาการ ทปษ. และ นายขจรศักดิ์ จิตรอารีเสถียร ผู้อำนวยการกลุ่มพัฒนาและบริหารข้อมูลเชิงยุทธศาสตร์ ภายใต้กระทรวงการอุดมศึกษา วิทยาศาสตร์ วิจัยและนวัตกรรม (อว.)<br>ได้เข้าร่วม ประชุมเชิงปฏิบัติการ หัวข้อ “การสร้างความเข้าใจการใช้ระบบ Digital Transformation Platform และ Digital Single View ของสถาบันอุดมศึกษาไทย”</p>",
+      "imageId": "/uploads/news/news-miqu68ow.png",
+      "createdAt": "2025-10-01T20:25:20.250Z",
+      "updatedAt": "2025-12-04T06:03:25.640Z",
+      "imageVersion": 1,
+      "institutionId": null
+    },
+    {
+      "id": "news-1763105700162",
+      "title": "โลกแห่งการเรียนรู้ไร้กำแพงเสียง! สื่อบทเรียนออนไลน์สำหรับผู้หูหนวก",
+      "content": "<p>โลกแห่งการเรียนรู้ไร้กำแพงเสียง! สื่อบทเรียนออนไลน์สำหรับผู้หูหนวก พร้อมภาษามือและคำบรรยาย (Closed Captions : CC) ครบถ้วน! ไม่ว่าคุณจะได้ยินหรือไม่ การเรียนรู้ก็เป็นเรื่องง่าย! คอร์สออนไลน์เฉพาะสำหรับผู้หูหนวก ออกแบบมาเพื่อให้ทุกคนเข้าถึงความรู้ได้อย่างแท้จริง! สื่อบทเรียนออนไลน์ที่มีล่ามภาษามือประกอบทุกขั้นตอน เข้าใจง่าย เรียนได้ทุกที่ ทุกเวลา! การเล่าเรื่องในสื่อดิจิทัลอย่างรู้เท่าทัน (สำหรับคนหูหนวก) (3 ชั่วโมง) พัฒนาบทเรียนโดย มหาวิทยาลัยรังสิต การใช้สื่อออนไลน์ในฐานะพลเมืองดิจิทัล (3 ชั่วโมง) พัฒนาบทเรียนโดย มหาวิทยาลัยรังสิต สมัครเรียนออนไลน์ : <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"text-primary underline\" href=\"https://thaimooc.ac.th/\">https://thaimooc.ac.th/</a> เรียนฟรี! มีใบประกาศนียบัตร (เงื่อนไขเป็นไปตามที่กำหนด)</p>",
+      "imageId": "/uploads/news/news-miqu5xwj.png",
+      "createdAt": "2025-11-14T07:35:00.162Z",
+      "updatedAt": "2025-12-04T06:02:22.666Z",
+      "imageVersion": 1,
+      "institutionId": null
+    },
+    {
+      "id": "news-1768269644740",
+      "title": "ทดสอบข่าวประชาสัมพันธ์",
+      "content": "<p>ทดสอบข่าวประชาสัมพันธ์ทดสอบข่าวประชาสัมพันธ์ทดสอบข่าวประชาสัมพันธ์ทดสอบข่าวประชาสัมพันธ์ทดสอบข่าวประชาสัมพันธ์ทดสอบข่าวประชาสัมพันธ์ทดสอบข่าวประชาสัมพันธ์ทดสอบข่าวประชาสัมพันธ์ทดสอบข่าวประชาสัมพันธ์ทดสอบข่าวประชาสัมพันธ์ทดสอบข่าวประชาสัมพันธ์ทดสอบข่าวประชาสัมพันธ์ทดสอบข่าวประชาสัมพันธ์ทดสอบข่าวประชาสัมพันธ์ทดสอบข่าวประชาสัมพันธ์ทดสอบข่าวประชาสัมพันธ์</p>",
+      "imageId": "/uploads/news/news-mj2enjak.jpg?t=1765516019564",
+      "createdAt": "2026-01-13T02:00:44.740Z",
+      "updatedAt": "2026-01-13T02:00:44.740Z",
+      "imageVersion": 1,
+      "institutionId": "25017"
+    },
+    {
+      "id": "news-2",
+      "title": "ทำคอร์สออนไลน์ เริ่มต้นง่าย เริ่มได้เลย!",
+      "content": "<p><span style=\"color: rgb(32, 37, 44);\">ทำคอร์สออนไลน์ เริ่มต้นง่าย เริ่มได้เลย!  รศ. ดร.ปราวีณยา สุวรรณณัฐโชต์ (คณะครุศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย) แนะนำองค์ประกอบที่สำคัญในการพัฒนาบทเรียนออนไลน์เพื่อส่งเสริมการเรียนรู้ การสร้างบทเรียนออนไลน์ประกอบด้วย 6 ขั้นตอน ได้แก่<br>1. การวิเคราะห์<br>2. การออกแบบหลักสูตร<br>3. การออกแบบเนื้อหา<br>4. การผลิตสื่อ<br>5. การนำไปใช้<br>6. การประเมินและปรับปรุง</span></p>",
+      "imageId": "/uploads/news/news-miqu6h76.png",
+      "createdAt": "2025-10-01T20:25:20.250Z",
+      "updatedAt": "2025-12-04T06:02:47.717Z",
+      "imageVersion": 1,
+      "institutionId": null
+    },
+    {
+      "id": "news-3",
+      "title": "3 พระจอมเกล้า สถาบันเทคโนโลยีชั้นนำของประเทศไทย แจกคอร์ส สายเทคฯ วิศวะ",
+      "content": "<p><span style=\"color: rgb(32, 37, 44);\">3 พระจอมเกล้า สถาบันเทคโนโลยีชั้นนำของประเทศไทย แจกคอร์ส สายเทคฯ วิศวะ (เรียนฟรีมีใบเซอร์)  บทเรียนระยะสั้นพร้อมตัวอย่างที่เข้าใจง่าย เรียนได้ทุกที่ ทุกเวลา บนแพลตฟอร์ม Thai MOOC (ไทยมู้ก) มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี (37 รายวิชา)  </span><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"text-primary underline\" href=\"https://thaimooc.ac.th/courses/?filter-instructor%5B%5D=35\"><span style=\"color: rgb(32, 37, 44);\">https://thaimooc.ac.th/courses/?filter-instructor%5B%5D=35</span></a><span style=\"color: rgb(32, 37, 44);\"> มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ (2 รายวิชา) </span><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"text-primary underline\" href=\"https://thaimooc.ac.th/courses/?filter-instructor%5B%5D=34\"><span style=\"color: rgb(32, 37, 44);\">https://thaimooc.ac.th/courses/?filter-instructor%5B%5D=34</span></a><span style=\"color: rgb(32, 37, 44);\"> สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง (14 รายวิชา)  </span><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"text-primary underline\" href=\"https://thaimooc.ac.th/courses/?filter-instructor%5B%5D=33\"><span style=\"color: rgb(32, 37, 44);\">https://thaimooc.ac.th/courses/?filter-instructor%5B%5D=33</span></a><span style=\"color: rgb(32, 37, 44);\"> สมัครเรียนออนไลน์ : </span><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"text-primary underline\" href=\"https://thaimooc.ac.th/\"><span style=\"color: rgb(32, 37, 44);\">https://thaimooc.ac.th/</span></a><span style=\"color: rgb(32, 37, 44);\"> เรียนฟรี! มีใบประกาศนียบัตร (เงื่อนไขเป็นไปตามที่กำหนด)</span></p>",
+      "imageId": "/uploads/news/news-miqu8fzy.jpg",
+      "createdAt": "2025-10-01T20:25:20.250Z",
+      "updatedAt": "2025-12-04T06:03:05.068Z",
+      "imageVersion": 1,
+      "institutionId": null
+    }
+  ],
+  "banners": [
+    {
+      "id": "banner-1760146639538-588",
+      "title": "MUIC CONNECT",
+      "titleEn": "MUIC CONNECT",
+      "subtitle": "Improving lives through learning Learn Anytime, Anywhere.",
+      "subtitleEn": "Improving lives through learning Learn Anytime, Anywhere.",
+      "imageId": "/uploads/banners/banner-square-miquboxm.png?t=1764816746746",
+      "backgroundImageId": "/uploads/banners/banner-mkwaz2u6.jpg?t=1769500607262",
+      "linkUrl": "https://thaimooc.ac.th",
+      "isActive": 1,
+      "order": 0,
+      "createdAt": "2025-10-10T18:37:19.539Z",
+      "updatedAt": "2026-01-27T07:56:50.234Z",
+      "overlayImageId": null,
+      "templateId": "hero-split",
+      "accentColor": "#0fd779",
+      "backgroundColor": "#2138a1",
+      "buttonText": "Register",
+      "buttonTextEn": "Register",
+      "description": "แหล่งรวบรวมค้นหารายวิชาออนไลน์ขนาดใหญ่ ผู้เรียนสามารถค้นหารายวิชาได้ง่าย ๆ ตอบโจทย์การเรียนรู้ตลอดชีวิต",
+      "descriptionEn": "A large online course search resource. Learners can easily search for courses, meeting the needs of lifelong learning.",
+      "textColor": "#ffffff",
+      "institutionId": null
+    }
+  ],
+  "guides": [
+    {
+      "id": "guide-1763103971479-qwms0i",
+      "title": "สอบไม่ผ่านบน Thai MOOC ทำอย่างไร ?",
+      "content": "<p><span>สอบไม่ผ่านผู้เรียนสามารถขอรีเซ็ตคะแนน หรือผลการเรียนในรายวิชาที่เรียนไม่ผ่านได้ ผ่านลิงค์&nbsp; </span><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"text-primary underline\" href=\"https://learner.thaimooc.ac.th/reset-score\"><span style=\"color: rgb(70, 120, 134);\"><u>https://learner.thaimooc.ac.th/reset-score</u></span></a><span>&nbsp;</span></p>",
+      "category": "การใช้งานระบบ",
+      "keywords": "สอบไม่ผ่าน",
+      "is_active": 1,
+      "view_count": 29,
+      "created_by": null,
+      "created_at": "2025-11-14T07:06:11.000Z",
+      "updated_at": "2026-01-03T06:29:35.000Z"
+    },
+    {
+      "id": "guide-1763104025600-tmjafj",
+      "title": "ขอแก้ไข ชื่อ-นามสกุล ในระบบหรือในใบประกาศนียบัตรได้หรือไม่ ",
+      "content": "<p><span style=\"color: rgb(0, 0, 0);\">เบื้องต้นไม่สามารถทำได้เนื่องจากระบบจะเชื่อมโยงกับกรมการปกครอง ซึ่งจะมีข้อมูลที่ถูกต้องอยู่แล้ว&nbsp;</span></p>",
+      "category": "การใช้งานระบบ",
+      "keywords": "แก้ไข ชื่อ-นามสกุล",
+      "is_active": 1,
+      "view_count": 19,
+      "created_by": null,
+      "created_at": "2025-11-14T07:07:05.000Z",
+      "updated_at": "2026-01-04T13:20:32.000Z"
+    },
+    {
+      "id": "guide-1763104115135-76z74s",
+      "title": "ลืม บัญชีผู้ใช้ หรือ รหัสผ่าน ทำอย่างไร ?",
+      "content": "<p><span style=\"color: rgb(0, 0, 0);\">ลืม บัญชีผู้ใช้ หรือ รหัสผ่าน สามารถเข้าระบบได้ด้วย ThaiD Application หรือหากไม่มี ThaiD Application สามารถติดต่อเจ้าหน้าที่ในการตรวจสอบอีเมลของผู้เรียนผ่านชื่อได้ครับ ส่วนรหัสผ่านระสามารถเข้าสู่กระบวนการและขั้นตอนการลืมรหัสผ่านได้ โดยระบบจะส่งเมลการรีเซ็ตรหัสผ่านไปยังเมลของผู้เรียนโดยตรง</span></p>",
+      "category": "การใช้งานระบบ",
+      "keywords": "ลืม บัญชีผู้ใช้ หรือ รหัสผ่าน",
+      "is_active": 1,
+      "view_count": 16,
+      "created_by": null,
+      "created_at": "2025-11-14T07:08:35.000Z",
+      "updated_at": "2026-01-03T13:26:54.000Z"
+    },
+    {
+      "id": "guide-1763104173776-fz31w",
+      "title": "ดาวน์โหลดใบประกาศนียบัตรไม่ได้ ทำอย่างไร ?",
+      "content": "<p><span style=\"color: rgb(0, 0, 0);\">เนื่องจากใบประกาศนียบัตรในปัจจุบันเป็น Digital Signature ดังนั้นจะใช้เวลาในการออกเอกสารประมาน 1-2 วัน หรือเร็วและช้ากว่านั้น ขอให้ผู้เรียนโปรดเข้ามาตรวจสอบอีกครั้งหลังจากเรียนจบแล้วครับ หากเลยระยะเวลาดังกล่าวไปแล้วยังไม่ได้รับสามารถติดต่อเจ้าหน้าที่เพื่อขอรับการสนับสนุนได้</span></p>",
+      "category": "ใบประกาศนียบัตร",
+      "keywords": "ดาวน์โหลดใบประกาศนียบัตรไม่ได้",
+      "is_active": 1,
+      "view_count": 16,
+      "created_by": null,
+      "created_at": "2025-11-14T07:09:33.000Z",
+      "updated_at": "2026-01-01T16:59:56.000Z"
+    },
+    {
+      "id": "guide-1763104205769-xny2xb",
+      "title": "เข้าระบบไม่ได้ ทำอย่างไร ? ",
+      "content": "<p><span style=\"color: rgb(0, 0, 0);\">การเข้าระบบไม่ได้ เป็นได้หลายสาเหตุครับ เช่น Username และ Password ของผู้เรียนผิดทำให้ไม่สามารถเข้าใช้งานได้ เป็นต้น หรือ หากเป็นการแจ้งเตือนจากระบบ ระบบอาจจะมีผู้ใช้งานอยู่เป็นปริมาณมากทำให้ไม่สามารถรองรับผู้เรียนเพิ่มได้ ให้ผู้เรียนเข้ามาใหม่ ในภายหลัง</span></p>",
+      "category": "การใช้งานระบบ",
+      "keywords": "เข้าระบบไม่ได้",
+      "is_active": 1,
+      "view_count": 21,
+      "created_by": null,
+      "created_at": "2025-11-14T07:10:05.000Z",
+      "updated_at": "2026-01-02T19:49:07.000Z"
+    },
+    {
+      "id": "guide-1763104240079-x99zd8",
+      "title": "ลงทะเบียนเรียนไม่ได้ ทำอย่างไร ?",
+      "content": "<p><span style=\"color: rgb(0, 0, 0);\">ลงทะเบียนเรียน เป็นได้หลายสาเหตุครับ เบื้องต้นให้ผู้เรียนตรวจเช็คข้อมูลตามบัตรประชาชนของตนเองเช่น ชื่อ นามกุล วันเดือนปีเกิด และ CV หลังบัตรว่าถูกต้องหรือไม่ เนื่องจากกระบวนการดังกล่าวระบบ Thai MOOC จะใช้บริการการตรวจสอบบุคคลจาก กรมการปกครอง หากข้อมูลไม่ครบจะไม่สามารถสมัครสมาชิกได้ครับ นอกจากนี้ หากเป็นการแจ้งเตือนจากระบบ ระบบอาจจะมีผู้ใช้งานอยู่เป็นปริมาณมากทำให้ไม่สามารถรองรับผู้เรียนเพิ่มได้ ให้ผู้เรียนเข้ามาใหม่ ในภายหลัง</span></p>",
+      "category": "การใช้งานระบบ",
+      "keywords": "ลงทะเบียนเรียนไม่ได้",
+      "is_active": 1,
+      "view_count": 25,
+      "created_by": null,
+      "created_at": "2025-11-14T07:10:40.000Z",
+      "updated_at": "2026-01-02T21:01:43.000Z"
+    },
+    {
+      "id": "guide-1763104274034-tkqikc",
+      "title": "รีเซ็ตผลการเรียน หรือคะแนนไม่ได้ ทำอย่างไร ?",
+      "content": "<p><span style=\"color: rgb(0, 0, 0);\">ให้ตรวจสอบข้อมูลรายวิชาว่า วิชาที่ดำเนินการแจ้งขอรีเซ็ตผลการเรียนนั้นถูกต้องหรือไม่ หากเป็นการแจ้งเตือนจากระบบ ระบบอาจจะมีผู้ใช้งานอยู่เป็นปริมาณมากทำให้ไม่สามารถรองรับผู้เรียนเพิ่มได้ ให้ผู้เรียนร้องขอเข้ามาใหม่ ในภายหลังครับ หรือสามารถติดต่อเจ้าหน้าที่เพื่อขอรับการสนับสนุนได้&nbsp;</span></p>",
+      "category": "การประเมินผล",
+      "keywords": "รีเซ็ตผลการเรียน",
+      "is_active": 1,
+      "view_count": 33,
+      "created_by": null,
+      "created_at": "2025-11-14T07:11:14.000Z",
+      "updated_at": "2026-01-30T01:40:32.000Z"
+    }
+  ],
+  "image_placeholders": [],
+  "menus": [],
+  "menu_items": [],
+  "tickets": [
+    {
+      "id": "ticket-1770021820109-q5bc09",
+      "ticket_number": "TK-2026-0001",
+      "user_name": "จิระ",
+      "user_email": "jira@thaimooc.ac.th",
+      "subject": "เข้าระบบไม่ได้",
+      "description": "<p><img src=\"/uploads/others/ml4xac7o-yuanying-v1.png?t=1770021813588\">เข้าระบบไม่ได้</p>",
+      "category": "general",
+      "status": "new",
+      "priority": "normal",
+      "is_read": 1,
+      "assigned_to": null,
+      "created_at": "2026-02-02T08:43:40.000Z",
+      "updated_at": "2026-02-02T08:43:49.000Z"
+    }
+  ],
+  "ticket_replies": [],
+  "popups": [
+    {
+      "id": "popup-1761545975856-42",
+      "title": "ถวายความอาลัยพระพันปีหลวง",
+      "titleEn": "We offer our deepest condolences to the Royal Family",
+      "description": "ถวายความอาลัยพระพันปีหลวง",
+      "descriptionEn": "We offer our deepest condolences to the Royal Family",
+      "imageId": "/uploads/squares/mj16en6v-90.jpg?t=1765441701607",
+      "linkUrl": null,
+      "buttonText": null,
+      "buttonTextEn": null,
+      "isActive": 1,
+      "startDate": "2025-10-25T17:20:00.000Z",
+      "endDate": null,
+      "displayOrder": 0,
+      "showOnce": 1,
+      "createdAt": "2025-10-27T06:19:36.000Z",
+      "updatedAt": "2025-12-11T08:28:25.000Z",
+      "imageVersion": 1
+    }
+  ]
+}
