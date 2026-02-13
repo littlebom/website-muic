@@ -14,6 +14,8 @@
 
 # production
 /build
+/public/uploads/
+*.sql
 
 # misc
 .DS_Store

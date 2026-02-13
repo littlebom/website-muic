@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=mysql://root:KKiabkob@db:3306/web_muic
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=KKiabkob
+      - DB_NAME=web_muic
+    depends_on:
+      - db
+    restart: always
+    volumes:
+      - ./public/uploads:/app/public/uploads
+
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: KKiabkob
+      MYSQL_DATABASE: web_muic
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./backup_web_muicclean_20260212.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+
+volumes:
+  db_data:
