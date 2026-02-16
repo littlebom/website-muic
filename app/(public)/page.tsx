@@ -22,7 +22,7 @@ export default async function HomePage() {
     courseTypes
   ] = await Promise.all([
     getCategories(),
-    getCourses({ limit: 4, sort: 'newest' }),
+    getCourses({ limit: 6, sort: 'newest' }),
     getCourses({ limit: 4, sort: 'popular' }),
     getNews(4),
     getBanners(true),

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    unoptimized: false,
+    unoptimized: true,
     minimumCacheTTL: 0, // Don't cache optimized images (fixes upload display issue)
     domains: [],
     remotePatterns: [
@@ -21,6 +21,10 @@ const nextConfig = {
   // This prevents database connection errors during build time
   experimental: {
     // Force dynamic rendering for all pages
+    serverActions: {
+      bodySizeLimit: '50mb',
+    },
+    middlewareClientMaxBodySize: 50 * 1024 * 1024, // 50MB
   },
   // Skip static page generation
   skipTrailingSlashRedirect: true,

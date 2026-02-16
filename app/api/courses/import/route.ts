@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { query, queryOne, execute } from "@/lib/mysql-direct";
+import { redisCache } from "@/lib/redis-cache";
 
 interface CSVCourseData {
   // Support both old and new CSV format
@@ -58,15 +59,35 @@ interface CSVCourseData {
   'Development Year'?: string;
 }
 
-// Helper function to get value from either old or new CSV format
-function getFieldValue(course: CSVCourseData, oldKey: string, newKey: string): string | undefined {
-  return (course as any)[newKey] || (course as any)[oldKey] || undefined;
+// Helper function to get value from course object with robust key matching
+function findValue(course: any, keys: string[]): string | undefined {
+  const courseKeys = Object.keys(course);
+  for (const requestedKey of keys) {
+    // Try exact match first
+    if (course[requestedKey] !== undefined && course[requestedKey] !== null) {
+      return String(course[requestedKey]).trim();
+    }
+
+    // Try normalized match (ignore case, spaces, underscores, and parentheses)
+    const normalize = (s: string) => s.toLowerCase().replace(/[\s_()]/g, '');
+    const normalizedRequested = normalize(requestedKey);
+    const foundKey = courseKeys.find(k => normalize(k) === normalizedRequested);
+
+    if (foundKey && course[foundKey] !== undefined && course[foundKey] !== null) {
+      return String(course[foundKey]).trim();
+    }
+  }
+  return undefined;
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { courses } = body;
+
+    if (courses && courses.length > 0) {
+      console.log('[Import] Received first row keys:', Object.keys(courses[0]));
+    }
 
     // Fetch all categories for name-to-id mapping
     const allCategories = await query<any>('SELECT id, name, nameEn FROM categories');
@@ -108,10 +129,10 @@ export async function POST(request: NextRequest) {
       const course = courses[i] as CSVCourseData;
 
       try {
-        // Extract values supporting both CSV formats
-        const title = getFieldValue(course, 'title', 'Title (TH)');
-        const titleEn = getFieldValue(course, 'titleEn', 'Title (EN)');
-        const description = getFieldValue(course, 'description', 'Description');
+        // Extract values supporting various header formats
+        const title = findValue(course, ['Title (TH)', 'title', 'titleTh']);
+        const titleEn = findValue(course, ['Title (EN)', 'titleEn', 'title_en']);
+        const description = findValue(course, ['Description', 'description']);
 
         // Skip empty rows (where all main fields are missing)
         if (!title && !titleEn && !description && !Object.keys(course).length) {
@@ -119,36 +140,36 @@ export async function POST(request: NextRequest) {
         }
 
         // Validate required fields
-        if (!title || !titleEn || !description) {
+        if (!title && !titleEn && !description) {
           results.failed++;
           results.errors.push(`Row ${i + 1}: Missing required fields (Title (TH), Title (EN), Description)`);
           continue;
         }
 
         // Extract all fields with support for both formats
-        const id = getFieldValue(course, 'ID', 'ID') || `course-${Date.now()}-${i}`;
-        const courseCode = getFieldValue(course, 'courseCode', 'Course Code');
-        const institutionName = getFieldValue(course, 'institutionId', 'Institution');
-        const instructorName = getFieldValue(course, 'instructorId', 'Instructor');
-        const level = getFieldValue(course, 'level', 'Level');
-        const durationHours = getFieldValue(course, 'durationHours', 'Duration (Hours)');
-        const learningOutcomesRaw = getFieldValue(course, 'learningOutcomes', 'Learning Outcomes');
-        const targetAudience = getFieldValue(course, 'targetAudience', 'Target Audience');
-        const prerequisites = getFieldValue(course, 'prerequisites', 'Prerequisites');
-        const tags = getFieldValue(course, 'tags', 'Tags');
-        const courseUrl = getFieldValue(course, 'courseUrl', 'Course URL');
-        const videoUrl = getFieldValue(course, 'videoUrl', 'Video URL');
-        const teachingLanguage = getFieldValue(course, 'teachingLanguage', 'Teaching Language');
-        const hasCertificateRaw = getFieldValue(course, 'hasCertificate', 'Has Certificate');
-        const imageId = getFieldValue(course, 'imageId', 'Image URL');
-        const bannerImageId = getFieldValue(course, 'bannerImageId', 'Banner Image URL');
-        const categoryIdsRaw = getFieldValue(course, 'categoryIds', 'Categories');
-        const courseTypeIdsRaw = getFieldValue(course, 'courseTypeIds', 'Course Types');
+        const id = findValue(course, ['ID', 'id']);
+        const courseCode = findValue(course, ['Course Code', 'courseCode']);
+        const institutionName = findValue(course, ['Institution', 'institutionId']);
+        const instructorName = findValue(course, ['Instructor', 'instructorId']);
+        const level = findValue(course, ['Level', 'level']);
+        const durationHours = findValue(course, ['Duration (Hours)', 'durationHours']);
+        const learningOutcomesRaw = findValue(course, ['Learning Outcomes', 'learningOutcomes']);
+        const targetAudience = findValue(course, ['Target Audience', 'targetAudience']);
+        const prerequisites = findValue(course, ['Prerequisites', 'prerequisites']);
+        const tags = findValue(course, ['Tags', 'tags']);
+        const courseUrl = findValue(course, ['Course URL', 'courseUrl']);
+        const videoUrl = findValue(course, ['Video URL', 'videoUrl']);
+        const teachingLanguage = findValue(course, ['Teaching Language', 'teachingLanguage']);
+        const hasCertificateRaw = findValue(course, ['Has Certificate', 'hasCertificate']);
+        const imageId = findValue(course, ['Image URL', 'imageId']);
+        const bannerImageId = findValue(course, ['Banner Image URL', 'bannerImageId']);
+        const categoryIdsRaw = findValue(course, ['Categories', 'categoryIds']);
+        const courseTypeIdsRaw = findValue(course, ['Course Types', 'courseTypeIds']);
 
         // New fields
-        const assessmentCriteria = getFieldValue(course, 'assessmentCriteria', 'Assessment Criteria');
-        const contentStructure = getFieldValue(course, 'contentStructure', 'Content Structure');
-        const developmentYear = getFieldValue(course, 'developmentYear', 'Development Year');
+        const assessmentCriteria = findValue(course, ['Assessment Criteria', 'assessmentCriteria']);
+        const contentStructure = findValue(course, ['Content Structure', 'contentStructure']);
+        const developmentYear = findValue(course, ['Development Year', 'developmentYear']);
 
         // Find institution ID by name (if name is provided instead of ID)
         let institutionId = null;
@@ -249,8 +270,10 @@ export async function POST(request: NextRequest) {
 
         const now = new Date();
 
+        console.log(`[Import] Processing row ${i + 1}: ID=${id}, Code=${courseCode}, Title=${title}`);
+
         // Create course
-        await execute(
+        const execResult = await execute(
           `INSERT INTO courses (
             id, courseCode, title, titleEn, description, learningOutcomes, targetAudience,
             prerequisites, tags, courseUrl, videoUrl, institutionId, instructorId,
@@ -259,7 +282,7 @@ export async function POST(request: NextRequest) {
             enrollCount, createdAt, updatedAt
           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?)`,
           [
-            id,
+            id || `course-${Date.now()}-${i}`,
             courseCode || null,
             title,
             titleEn,
@@ -286,13 +309,18 @@ export async function POST(request: NextRequest) {
           ]
         );
 
+        console.log(`[Import] Row ${i + 1} Inserted: affectedRows=${execResult.affectedRows}`);
+
+        // Update ID if it was generated
+        const finalId = id || `course-${Date.now()}-${i}`;
+
         // Create category relations
         if (categoryIds.length > 0) {
           for (const categoryId of categoryIds) {
             try {
               await execute(
                 'INSERT INTO course_categories (courseId, categoryId) VALUES (?, ?)',
-                [id, categoryId]
+                [finalId, categoryId]
               );
             } catch (err) {
               // Skip duplicates
@@ -306,7 +334,7 @@ export async function POST(request: NextRequest) {
             try {
               await execute(
                 'INSERT INTO course_course_types (courseId, courseTypeId) VALUES (?, ?)',
-                [id, courseTypeId]
+                [finalId, courseTypeId]
               );
             } catch (err) {
               // Skip duplicates
@@ -316,8 +344,21 @@ export async function POST(request: NextRequest) {
 
         results.success++;
       } catch (error: any) {
+        console.error(`[Import] Error at Row ${i + 1}:`, error);
         results.failed++;
         results.errors.push(`Row ${i + 1}: ${error.message || 'Unknown error'}`);
+      }
+    }
+
+    console.log('[Import] Finished. Results:', results);
+
+    // Clear cache if at least one course was successfully imported
+    if (results.success > 0) {
+      try {
+        await redisCache.clearPattern('courses:*');
+        console.log('[Import] Cache invalidated for courses:*');
+      } catch (cacheError) {
+        console.error('[Import] Failed to clear cache:', cacheError);
       }
     }
 

@@ -51,12 +51,13 @@ export function CourseImportDialog() {
 
     try {
       // Parse CSV file
-      Papa.parse(file, {
+      Papa.parse(file as any, {
         header: true,
-        skipEmptyLines: true,
+        skipEmptyLines: 'greedy',
         encoding: useThaiEncoding ? 'windows-874' : 'utf-8',
         complete: async (results) => {
           try {
+            console.log("Parsed CSV headers:", results.meta.fields);
             // Send to API
             const response = await fetch("/api/courses/import", {
               method: "POST",
@@ -76,6 +77,14 @@ export function CourseImportDialog() {
 
             setResult(data.results);
             router.refresh();
+
+            // If completely successful, close dialog and reload to refresh client-side state
+            if (data.results.failed === 0) {
+              setTimeout(() => {
+                setOpen(false);
+                window.location.reload();
+              }, 1500);
+            }
           } catch (error) {
             console.error("Error importing courses:", error);
             alert(
@@ -101,10 +110,166 @@ export function CourseImportDialog() {
   };
 
   const downloadTemplate = () => {
-    const csvContent = `ID,Course Code,Title (TH),Title (EN),Description,Categories,Course Types,Learning Outcomes,Target Audience,Assessment Criteria,Content Structure,Development Year,Prerequisites,Institution,Instructor,Level,Duration (Hours),Teaching Language,Has Certificate,Enroll Count,Image URL,Banner Image URL,Video URL,Course URL,Tags,Created At,Updated At
-course-001,CS101,"การเขียนโปรแกรม Python เบื้องต้น","Introduction to Python Programming","เรียนรู้พื้นฐานการเขียนโปรแกรม Python ตั้งแต่เริ่มต้น เหมาะสำหรับผู้ที่ไม่มีพื้นฐานการเขียนโปรแกรม","04,02","General Education","เข้าใจพื้นฐานภาษา Python,สามารถเขียนโปรแกรมเบื้องต้นได้,เข้าใจโครงสร้างข้อมูลพื้นฐาน","นักเรียน นักศึกษา ผู้ที่สนใจเรียนโปรแกรมมิ่ง","เข้าเรียน 80%, สอบผ่าน 60%","บทนำ,ตัวแปร,ลูป,ฟังก์ชัน",2025,"ไม่ต้องมีพื้นฐาน","Changhua Christian Hospital","John Doe",beginner,40,Thai,Yes,150,https://openedu.mooc.thai.net/wp-content/uploads/2024/09/cropped-openedu-c-logo.png,,"https://youtube.com/watch?v=example","https://example.com/courses/python-intro","python,programming,beginner,coding",2025-01-15T08:00:00.000Z,2025-01-15T08:00:00.000Z
-course-002,DEV102,"การพัฒนาเว็บด้วย React","Web Development with React","เรียนรู้การสร้างเว็บแอปพลิเคชันด้วย React.js แบบ step-by-step","04","Specific Skills","สร้าง Web App ด้วย React ได้,เข้าใจ Component-based Architecture,ใช้งาน React Hooks ได้","นักศึกษาสายไอที นักพัฒนาเว็บ","ส่งงานครบทุกชิ้น","Introduction to React,Components,State & Props,Hooks",2025,"พื้นฐาน HTML CSS JavaScript","Microsoft Thailand","Jane Smith",intermediate,60,Thai,Yes,230,https://openedu.mooc.thai.net/wp-content/uploads/2024/09/cropped-openedu-c-logo.png,,"https://youtube.com/watch?v=example2","https://example.com/courses/react","react,web,javascript,frontend",2025-01-15T08:00:00.000Z,2025-01-15T08:00:00.000Z
-course-003,DATA201,"Data Science ด้วย Python","Data Science with Python","เรียนรู้การวิเคราะห์ข้อมูลและ Machine Learning ด้วย Python","04,02","Professional","วิเคราะห์ข้อมูลด้วย Pandas,สร้างโมเดล Machine Learning,Visualize ข้อมูลด้วย Matplotlib","นักวิเคราะห์ข้อมูล Data Scientist ผู้สนใจ AI","สอบ Final 100%","Data Preprocessing,Modeling,Evaluation",2025,"พื้นฐาน Python และ คณิตศาสตร์","National Cheng Kung University","Dr. Alan Wang",advanced,80,English,No,95,https://openedu.mooc.thai.net/wp-content/uploads/2024/09/cropped-openedu-c-logo.png,,,"","python,datascience,ai,machinelearning",2025-01-15T08:00:00.000Z,2025-01-15T08:00:00.000Z`;
+    const headers = [
+      'ID',
+      'Course Code',
+      'Title (TH)',
+      'Title (EN)',
+      'Description',
+      'Categories',
+      'Course Types',
+      'Learning Outcomes',
+      'Target Audience',
+      'Prerequisites',
+      'Institution',
+      'Instructor',
+      'Level',
+      'Duration (Hours)',
+      'Teaching Language',
+      'Has Certificate',
+      'Enroll Count',
+      'Image URL',
+      'Banner Image URL',
+      'Video URL',
+      'Course URL',
+      'Tags',
+      'Created At',
+      'Updated At',
+      'Assessment Criteria',
+      'Content Structure',
+      'Development Year',
+      'Hard Skills',
+      'Soft Skills'
+    ];
+
+    const sampleData = [
+      [
+        '"course-1769756680849-8"',
+        '"MUIC009"',
+        '"Climate Crisis The Whats and the Whys"',
+        '"Climate Crisis The Whats and the Whys"',
+        '"The course Climate Crisis: The Whats and the Whys will introduce learners to the basics of global warming and climate change. Learners will also become aware of the causes and consequences of climate change. It will then generate the learners’ knowledge and understanding of the severity of specific human actions and activities that have resulted in the current state of the climate crisis. Finally, the course will allow learners to partake in a discussion on the potential solutions in addressing the climate crisis."',
+        '"02"',
+        '""',
+        '"[""Explain the principles of global warming, climate change, and the climate crisis. "",""Describe the causes and consequences of the climate crisis."",""Explore options to address the climate crisis. Participate in constructive group discussions.""]"',
+        '"Pre-College/University students"',
+        '"None"',
+        '"วิทยาลัยนานาชาติ มหาวิทยาลัยมหิดล"',
+        '"Ramesh Boonratana"',
+        '"Beginner"',
+        '"12"',
+        '"English"',
+        '"Yes"',
+        '"5"',
+        '"/uploads/courses/course-ml0k8ave.jpg?t=1769758018826"',
+        '""',
+        '"https://www.youtube.com/watch?v=D3ZBPLot1Ek"',
+        '"https://muiclms.mahidol.ac.th/courses/course-v1:MUIC+009+1/about"',
+        '"Climate Crisis, global warming"',
+        '"2026-01-30T07:04:40.849Z"',
+        '"2026-01-30T08:05:16.706Z"',
+        '"70"',
+        '""',
+        '"2026"',
+        '""',
+        '""'
+      ].join(','),
+      [
+        '"course-1769756680848-5"',
+        '"MUIC006"',
+        '"Tourism and Hospitality Management 4.0"',
+        '"Tourism and Hospitality Management 4.0"',
+        '"Step into the future of the global travel industry. This course goes beyond the basics to explore how Tourism and Hospitality are evolving in the digital era (Industry 4.0). Students will navigate the entire tourism ecosystem, distinguishing the unique career paths between tourism management and hospitality services.\nThe curriculum emphasizes a holistic approach to Sustainable Tourism, analyzing how the government, private sector, and public communities collaborate to drive development. You will learn to craft cutting-edge business strategies, master the art of service-oriented quality for diverse target markets, and apply Marketing 4.0 principles to create unforgettable, value-driven guest experiences. Prepare to lead the industry with a blend of strategic insight and service excellence."',
+        '"09"',
+        '""',
+        '"[""Students can explain the difference of career in tourism and hospitality industry."",""Students can explain the importance of sustainable tourism and the main elements of Government, Private, Public sector driven forward sustainable tourism development."",""Students can explain the principles of further business development in tourism and Hospitality."",""Students can explain the business strategy for tourism and hospitality.""]"',
+        '"Undergraduate students"',
+        '"None"',
+        '"วิทยาลัยนานาชาติ มหาวิทยาลัยมหิดล"',
+        '"Kaewta Muangasame"',
+        '"Beginner"',
+        '"12"',
+        '"English"',
+        '"Yes"',
+        '"2"',
+        '"/uploads/courses/course-ml0klfgn.jpg?t=1769758631303"',
+        '""',
+        '"https://www.youtube.com/watch?v=QXe8I5SMRhw"',
+        '"https://muiclms.mahidol.ac.th/courses/course-v1:MUIC+006+1/about"',
+        '"Tourism"',
+        '"2026-01-30T07:04:40.848Z"',
+        '"2026-01-30T07:37:29.522Z"',
+        '"70"',
+        '""',
+        '"2026"',
+        '""',
+        '""'
+      ].join(','),
+      [
+        '"course-1769756680848-6"',
+        '"MUIC007"',
+        '"Science for Life"',
+        '"Science for Life"',
+        '"รายวิชานี้ นำเสนอถึงความสำคัญของความรู้พื้นฐานของหัวข้อในทางฟิสิกส์ เคมี ชีววิทยา และคณิตศาสตร์ ที่มีต่อเทคโนโลยี และ ชีวิตประจำวันในยุคปัจจุบัน เช่น การใช้หน่วย ที่มาของพลังงาน ยาและวัคซีนเพื่อสุขภาพ และ การใช้คณิตศาสตร์เพื่ออธิบาย สถิติ การออกแบบ และการสั่งงานด้วยเสียง"',
+        '"02"',
+        '""',
+        '"[""ผู้เรียนสามารถคำนวณการเปลี่ยนหน่วยได้อย่างถูกต้อง และอธิบายถึงความสำคัญของความแม่นยำในการวัด"",""ผู้เรียนสามารถคำนวณพลังงานที่ใช้ในชีวิตประจำวัน และเข้าใจถึงที่มาของพลังงานในปัจจุบัน และอนาคต"",""ผู้เรียนสามารถอธิบายถึงกระบวนการพัฒนาเทคโนโลยีเพื่อสุขภาพ"",""ผู้เรียนสามารถประยุกต์ใช้คณิตศาสตร์เพื่อแก้ปัญหาในชีวิตประจำวันได้""]"',
+        '"นักเรียน นักศึกษา และประชาชนทั่วไป"',
+        '""',
+        '"วิทยาลัยนานาชาติ มหาวิทยาลัยมหิดล"',
+        '"Kaewta Muangasame"',
+        '"Beginner"',
+        '"12"',
+        '"Thai"',
+        '"Yes"',
+        '"2"',
+        '"/uploads/courses/course-ml0kumgs.jpg?t=1769759060284"',
+        '""',
+        '"https://www.youtube.com/watch?v=bEJIuuApXbE"',
+        '"https://muiclms.mahidol.ac.th/courses/course-v1:MUIC+007+1/about"',
+        '"วิทยาศาสตร์, physics, chemistry"',
+        '"2026-01-30T07:04:40.848Z"',
+        '"2026-02-11T04:02:23.108Z"',
+        '"70%"',
+        '""',
+        '"2026"',
+        '""',
+        '""'
+      ].join(','),
+      [
+        '"course-1769756680846-3"',
+        '"MUIC004"',
+        '"Non-verbal communication Skills in Public Speaking"',
+        '"Non-verbal communication Skills in Public Speaking"',
+        '"Great ideas deserve a great delivery. Whether you are a student preparing for a thesis defense or a professional leading a boardroom pitch, the way you present is just as important as what you say.\n""Presence & Impact"" is a dynamic mini-course designed to transform your public speaking skills through the power of non-verbal communication. Across a series of short, high-impact videos, you will learn how to channel nervous energy into confidence, command the room with your posture, and use your voice as a precision instrument.\nStop hiding behind your slides. It’s time to step into the spotlight and deliver your message with authority, authenticity, and style."',
+        '"09"',
+        '""',
+        '"[""How to make the best use of posture to convey a message"",""How to make use of one’s voice for better delivery"",""How to use hands and facial expressions"",""How to interact with the slides and the audience during a presentation""]"',
+        '"Undergraduate students, Graduate students"',
+        '"None"',
+        '"วิทยาลัยนานาชาติ มหาวิทยาลัยมหิดล"',
+        '"Kaewta Muangasame"',
+        '"Beginner"',
+        '"12"',
+        '"English"',
+        '"Yes"',
+        '"3"',
+        '"/uploads/courses/course-ml0l6p19.jpg?t=1769759623485"',
+        '""',
+        '"https://www.youtube.com/watch?v=H8x-Gs3RzT4"',
+        '"https://muiclms.mahidol.ac.th/courses/course-v1:MUIC+004+1/about"',
+        '""',
+        '"2026-01-30T07:04:40.847Z"',
+        '"2026-02-11T04:12:14.265Z"',
+        '"70"',
+        '""',
+        '"2026"',
+        '""',
+        '""'
+      ].join(',')
+    ];
+
+    const csvContent = headers.join(',') + '\n' + sampleData.join('\n');
 
     // Add BOM for UTF-8 to ensure Thai characters display correctly in Excel
     const BOM = "\uFEFF";

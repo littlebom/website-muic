@@ -15,8 +15,10 @@ import Image from "next/image";
 import { ImageUploadWithCrop } from "@/components/admin/image-upload-with-crop";
 import { useNotification } from "@/components/ui/notification-dialog";
 import { SafeImage } from "@/components/safe-image";
+import { useSettings } from "@/components/providers/settings-provider";
 
 export default function AdminSettingsPage() {
+  const { refreshSettings } = useSettings();
   const [userRole, setUserRole] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -130,6 +132,8 @@ export default function AdminSettingsPage() {
 
       if (response.ok) {
         showSuccess("บันทึกสำเร็จ", "Global Settings saved successfully", 3000);
+        await loadGlobalSettings();
+        await refreshSettings();
       } else {
         showError("บันทึกไม่สำเร็จ", "Failed to save settings");
       }
@@ -474,13 +478,14 @@ export default function AdminSettingsPage() {
 
         <form onSubmit={handleGlobalSubmit} className="space-y-6">
           <Tabs defaultValue="general" className="w-full">
-            <TabsList className="grid w-full grid-cols-6">
+            <TabsList className="grid w-full h-auto grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2">
               <TabsTrigger value="general">General Settings</TabsTrigger>
               <TabsTrigger value="social">Social Media</TabsTrigger>
               <TabsTrigger value="preloader">Media Management</TabsTrigger>
               <TabsTrigger value="api">API Integration</TabsTrigger>
               <TabsTrigger value="smtp">SMTP / Email</TabsTrigger>
               <TabsTrigger value="skills">Skill Analysis</TabsTrigger>
+              <TabsTrigger value="system">System Maintenance</TabsTrigger>
             </TabsList>
 
             <TabsContent value="general" className="space-y-6 mt-6">
@@ -1146,7 +1151,7 @@ export default function AdminSettingsPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 mt-4">
                     <Switch
                       id="smtpSecure"
                       checked={globalFormData.smtpSecure || false}
@@ -1154,10 +1159,26 @@ export default function AdminSettingsPage() {
                     />
                     <Label htmlFor="smtpSecure">Use SSL/TLS (Secure Connection)</Label>
                   </div>
+
+                  <div className="flex justify-end space-x-4 mt-6">
+                    <Button type="submit" disabled={saving}>
+                      {saving ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Saving...
+                        </>
+                      ) : (
+                        <>
+                          <Save className="mr-2 h-4 w-4" />
+                          Save SMTP Settings
+                        </>
+                      )}
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="mt-6">
                 <CardHeader>
                   <CardTitle>คำแนะนำการตั้งค่า</CardTitle>
                 </CardHeader>
@@ -1186,14 +1207,70 @@ export default function AdminSettingsPage() {
               </Card>
             </TabsContent>
 
-          </Tabs>
+            <TabsContent value="system">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Database className="h-5 w-5 text-purple-500" />
+                    System Maintenance
+                  </CardTitle>
+                  <CardDescription>
+                    จัดการระบบและดูแลรักษาข้อมูล (System Maintenance & Data Management)
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="border rounded-lg p-6 bg-slate-50 dark:bg-slate-900/50">
+                    <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
+                      <RefreshCw className="h-5 w-5 text-orange-500" />
+                      System Cache
+                    </h3>
+                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                      <div className="text-sm text-muted-foreground">
+                        <p>ล้างข้อมูลแคชทั้งหมดของระบบ (Redis & Next.js Cache)</p>
+                        <p>ควรทำเมื่อมีการแก้ไขข้อมูลแล้วหน้าเว็บยังแสดงข้อมูลเก่า หรือรูปภาพไม่ยอมเปลี่ยน</p>
+                      </div>
+                      <Button
+                        variant="outline"
+                        className="border-orange-200 hover:bg-orange-50 text-orange-700 dark:border-orange-800 dark:hover:bg-orange-900/20 dark:text-orange-400"
+                        onClick={async () => {
+                          if (!confirm('ยืนยันการล้างแคชระบบทั้งหมด?\nConfirm clear all system cache?')) return;
+
+                          try {
+                            setLoading(true);
+                            const res = await fetch('/api/admin/cache/clear', { method: 'POST', body: JSON.stringify({}) });
+                            const data = await res.json();
+
+                            if (data.success) {
+                              showSuccess('Success', 'System cache cleared successfully');
+                              // Refresh current settings too
+                              await refreshSettings();
+                            } else {
+                              showError('Error', data.error || 'Failed to clear cache');
+                            }
+                          } catch (e) {
+                            showError('Error', 'Failed to connect to server');
+                          } finally {
+                            setLoading(false);
+                          }
+                        }}
+                      >
+                        <RefreshCw className="mr-2 h-4 w-4" />
+                        Clear System Cache
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+          </Tabs >
 
           <div className="flex justify-end p-4 bg-white border-t sticky bottom-0 z-10">
             <Button type="submit" size="lg" disabled={saving}>
               {saving ? "Saving..." : "Save Global Settings"}
             </Button>
           </div>
-        </form>
+        </form >
       </div >
     </>
   );

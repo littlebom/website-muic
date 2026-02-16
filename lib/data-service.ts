@@ -147,7 +147,11 @@ export async function getNews(limit?: number, institutionId?: string): Promise<N
 
     const cacheKey = `news:${limit || 'all'}:${institutionId || 'global'}`;
     const cached = await redisCache.get<News[]>(cacheKey);
-    if (cached) return cached;
+    if (cached) {
+        console.log(`[DataService] getNews cache hit: ${cacheKey}`);
+        return cached;
+    }
+    console.log(`[DataService] getNews cache miss: ${cacheKey}. Fetching from DB...`);
 
     let sql = 'SELECT * FROM news';
     const params: SqlParams = [];
@@ -167,6 +171,7 @@ export async function getNews(limit?: number, institutionId?: string): Promise<N
     }
 
     const news = await query<News>(sql, params);
+    console.log(`[DataService] getNews DB result: ${news.length} items found`);
     await redisCache.set(cacheKey, news, { ttl: TTL.SHORT });
     return news;
 }
@@ -205,7 +210,11 @@ export async function getCourses(params: CourseQueryParams = {}): Promise<Course
     const cacheKey = `courses:${categoryId || 'all'}:${institutionId || 'all'}:${level || 'all'}:${isPopular !== undefined ? isPopular : 'all'}:${limit || 'all'}:${sort || 'default'}`;
 
     const cached = await redisCache.get<CourseWithRelations[]>(cacheKey);
-    if (cached && Array.isArray(cached)) return cached;
+    if (cached && Array.isArray(cached)) {
+        console.log(`[DataService] getCourses cache hit: ${cacheKey}`);
+        return cached;
+    }
+    console.log(`[DataService] getCourses cache miss: ${cacheKey}. Fetching from DB...`);
 
     // Build WHERE clause
     const whereConditions: string[] = [];
@@ -298,6 +307,7 @@ export async function getCourses(params: CourseQueryParams = {}): Promise<Course
         };
     });
 
+    console.log(`[DataService] getCourses DB result: ${courses.length} items found`);
     await redisCache.set(cacheKey, result, { ttl: TTL.MEDIUM });
     return result;
 }

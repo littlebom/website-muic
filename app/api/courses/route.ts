@@ -224,6 +224,7 @@ export async function POST(request: NextRequest) {
     // ===================
 
     const body = await request.json() as CreateCourseBody;
+    console.log('[API Courses] POST Body:', JSON.stringify(body, null, 2));
 
     if (!body.title || !body.titleEn || !body.description || !body.categoryIds ||
       !body.institutionId || !body.instructorId || !body.imageId || !body.level) {
@@ -235,6 +236,7 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    console.log('[API Courses] Validated required fields');
 
     // RBAC: Enforce Institution ID logic
     if (user.role === 'institution_admin' && user.institutionId) {
@@ -332,6 +334,7 @@ export async function POST(request: NextRequest) {
         );
       }
     });
+    console.log(`[API Courses] Transaction complete. Course created with ID: ${courseId}`);
 
     // Clear cache when new course is added
     redisCache.clearPattern('courses:*');
@@ -348,11 +351,12 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(response, { status: 201 });
   } catch (error) {
-    console.error('API Error:', error);
+    console.error('[API Courses] Fatal Error in POST:', error);
     return NextResponse.json(
       {
         success: false,
         error: "Failed to create course",
+        details: error instanceof Error ? error.message : String(error)
       },
       { status: 500 }
     );

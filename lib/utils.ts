@@ -21,9 +21,9 @@ export function delay(ms: number): Promise<void> {
 }
 
 export function getImageUrl(imageId: string | null | undefined): string {
-  // If no imageId, return placeholder
+  // If no imageId, return empty string to allow component-level fallbacks (like SafeImage)
   if (!imageId) {
-    return "/placeholder.png";
+    return "";
   }
 
   // If imageId is already a URL (starts with http:// or https:// or /), return it directly
@@ -33,5 +33,5 @@ export function getImageUrl(imageId: string | null | undefined): string {
 
   // Otherwise, try to get URL from ImagePlaceholder
   const placeholder = getImagePlaceholder(imageId);
-  return placeholder?.url || "/placeholder.png";
+  return placeholder?.url || "";
 }

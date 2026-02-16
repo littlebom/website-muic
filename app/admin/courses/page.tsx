@@ -84,9 +84,11 @@ export default function AdminCoursesPage() {
       'Tags',
       'Created At',
       'Updated At',
-      'Content Structure', // Moved to end
-      'Hard Skills',       // Moved to end
-      'Soft Skills'        // Moved to end
+      'Assessment Criteria',
+      'Content Structure',
+      'Development Year',
+      'Hard Skills',
+      'Soft Skills'
     ];
 
     // Prepare CSV rows
@@ -144,28 +146,30 @@ export default function AdminCoursesPage() {
         `"${(course.title || '').replace(/"/g, '""')}"`,
         `"${(course.titleEn || '').replace(/"/g, '""')}"`,
         `"${(course.description || '').replace(/"/g, '""')}"`,
-        categoryIds || '',
+        `"${(categoryIds || '').replace(/"/g, '""')}"`,
         `"${courseTypeNames.replace(/"/g, '""')}"`,
         `"${(course.learningOutcomes || '').replace(/"/g, '""')}"`,
         `"${(course.targetAudience || '').replace(/"/g, '""')}"`,
         `"${(course.prerequisites || '').replace(/"/g, '""')}"`,
-        `"${institution ? institution.name : ''}"`,
-        `"${instructor ? instructor.name : ''}"`,
-        course.level || '',
+        `"${(institution ? institution.name : '').replace(/"/g, '""')}"`,
+        `"${(instructor ? instructor.name : '').replace(/"/g, '""')}"`,
+        `"${(course.level || '').replace(/"/g, '""')}"`,
         course.durationHours || 0,
-        course.teachingLanguage || '',
+        `"${(course.teachingLanguage || '').replace(/"/g, '""')}"`,
         course.hasCertificate ? 'Yes' : 'No',
         course.enrollCount || 0,
-        course.imageId || '',
-        course.bannerImageId || '',
-        course.videoUrl || '',
-        course.courseUrl || '',
+        `"${(course.imageId || '').replace(/"/g, '""')}"`,
+        `"${(course.bannerImageId || '').replace(/"/g, '""')}"`,
+        `"${(course.videoUrl || '').replace(/"/g, '""')}"`,
+        `"${(course.courseUrl || '').replace(/"/g, '""')}"`,
         `"${(course.tags || '').replace(/"/g, '""')}"`,
         new Date(course.createdAt).toISOString(),
         new Date(course.updatedAt).toISOString(),
-        `"${(course.contentStructure || '').replace(/"/g, '""')}"`, // Content Structure
-        `"${hardSkillsStr.replace(/"/g, '""')}"`,                 // Hard Skills
-        `"${softSkillsStr.replace(/"/g, '""')}"`                  // Soft Skills
+        `"${((course as any).assessmentCriteria || '').replace(/"/g, '""')}"`,
+        `"${(course.contentStructure || '').replace(/"/g, '""')}"`,
+        (course as any).developmentYear || '',
+        `"${hardSkillsStr.replace(/"/g, '""')}"`,
+        `"${softSkillsStr.replace(/"/g, '""')}"`
       ].join(',');
     });
 

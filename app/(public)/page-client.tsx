@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import Link from "next/link";
 import Image from "next/image";
 import { SafeImage } from "@/components/safe-image";
@@ -11,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { Category, News, Banner, Institution, CourseType, CourseWithRelations } from "@/lib/types";
 import { VideoModal } from "@/components/video-modal";
-import { ArrowRight, SquarePlus, ArrowUpSquare, Users, Award, Building2 } from "lucide-react";
+import { ArrowRight, SquarePlus, ArrowUpSquare, Users, Award, Building2, ChevronLeft, ChevronRight } from "lucide-react";
 import { getImageUrl } from "@/lib/utils";
 import { getIconComponent } from "@/lib/icon-map";
 import { BannerDisplay } from "@/components/public/banner-display";
@@ -49,6 +50,21 @@ export default function HomePageClient({
     const [currentBanner, setCurrentBanner] = useState(0);
     const [stats, setStats] = useState<StatsData | null>(null);
     const [activeVideo, setActiveVideo] = useState<{ url: string; title: string } | null>(null);
+
+    const [emblaRef, emblaApi] = useEmblaCarousel({
+        align: "start",
+        loop: false,
+        skipSnaps: false,
+        dragFree: true,
+    });
+
+    const scrollPrev = useCallback(() => {
+        if (emblaApi) emblaApi.scrollPrev();
+    }, [emblaApi]);
+
+    const scrollNext = useCallback(() => {
+        if (emblaApi) emblaApi.scrollNext();
+    }, [emblaApi]);
 
     useEffect(() => {
         async function fetchStats() {
@@ -136,18 +152,39 @@ export default function HomePageClient({
                             </Link>
                         </Button>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {newCourses.map((course) => (
-                            <CourseCard
-                                key={course.id}
-                                course={course}
-                                language={language}
-                                institutions={institutions}
-                                courseTypes={courseTypes}
-                                categories={categories}
-                                onPlayVideo={handlePlayVideo}
-                            />
-                        ))}
+                    <div className="relative group/carousel">
+                        <div className="overflow-hidden" ref={emblaRef}>
+                            <div className="flex gap-6 py-4">
+                                {newCourses.map((course) => (
+                                    <div key={course.id} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_25%] min-w-0">
+                                        <CourseCard
+                                            course={course}
+                                            language={language}
+                                            institutions={institutions}
+                                            courseTypes={courseTypes}
+                                            categories={categories}
+                                            onPlayVideo={handlePlayVideo}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Navigation Buttons */}
+                        <button
+                            onClick={scrollPrev}
+                            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 bg-white shadow-xl rounded-full p-3 text-primary hover:bg-primary hover:text-white transition-all duration-300 z-30 opacity-0 group-hover/carousel:opacity-100 group-hover/carousel:translate-x-0 lg:group-hover/carousel:-translate-x-6 disabled:opacity-0"
+                            aria-label="Previous slide"
+                        >
+                            <ChevronLeft className="h-6 w-6" />
+                        </button>
+                        <button
+                            onClick={scrollNext}
+                            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-12 bg-white shadow-xl rounded-full p-3 text-primary hover:bg-primary hover:text-white transition-all duration-300 z-30 opacity-0 group-hover/carousel:opacity-100 group-hover/carousel:translate-x-0 lg:group-hover/carousel:translate-x-6 disabled:opacity-0"
+                            aria-label="Next slide"
+                        >
+                            <ChevronRight className="h-6 w-6" />
+                        </button>
                     </div>
                 </div>
             </section>

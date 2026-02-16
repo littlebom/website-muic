@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from "next/server";
 import { queryOne, execute } from "@/lib/mysql-direct";
 import { addCacheHeaders } from "@/lib/cache-headers";

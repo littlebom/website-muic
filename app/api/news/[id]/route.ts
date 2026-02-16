@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { queryOne, execute } from "@/lib/mysql-direct";
+import { redisCache } from "@/lib/redis-cache";
 
 export async function GET(
   request: NextRequest,
@@ -7,6 +8,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
+    // ... existing GET implementation ...
     const news = await queryOne(
       'SELECT * FROM news WHERE id = ?',
       [id]
@@ -81,6 +83,10 @@ export async function PUT(
       );
     }
 
+    // Clear cache
+    await redisCache.clearPattern('news:*');
+    await redisCache.delete(`news:${id}`);
+
     const updatedNews = await queryOne(
       'SELECT * FROM news WHERE id = ?',
       [id]
@@ -118,6 +124,10 @@ export async function DELETE(
         { status: 404 }
       );
     }
+
+    // Clear cache
+    await redisCache.clearPattern('news:*');
+    await redisCache.delete(`news:${id}`);
 
     return NextResponse.json({
       success: true,

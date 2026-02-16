@@ -46,9 +46,10 @@ export function ImageUploadWithCrop({
             return;
         }
 
-        // Validate file size (10MB)
-        if (file.size > 10 * 1024 * 1024) {
-            alert("File size must be less than 10MB");
+        // Validate file size (50MB)
+        const MAX_FILE_SIZE = 50 * 1024 * 1024;
+        if (file.size > MAX_FILE_SIZE) {
+            alert(`ไฟล์มีขนาดใหญ่เกินไป (${(file.size / 1024 / 1024).toFixed(2)}MB) ระบบรองรับขนาดไฟล์สูงสุด 50MB ครับ`);
             return;
         }
 

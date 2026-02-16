@@ -4,6 +4,7 @@ import { redisCache } from "@/lib/redis-cache";
 
 interface Course {
   id: string;
+  courseCode: string | null;
   title: string;
   titleEn: string;
   description: string;
@@ -96,7 +97,7 @@ export async function PUT(
 
     // Resolve real ID first
     const existingCourse = await queryOne<Course>(
-      'SELECT id FROM courses WHERE id = ? OR courseCode = ?',
+      'SELECT id, courseCode FROM courses WHERE id = ? OR courseCode = ?',
       [paramId, paramId]
     );
 
@@ -264,6 +265,15 @@ export async function PUT(
 
     // Clear cache after update
     await redisCache.clearPattern('courses:*');
+    await redisCache.delete(`course:${id}`);
+
+    // Also try to clear by courseCode if we can leverage the body or existing data
+    if (existingCourse.courseCode) {
+      await redisCache.delete(`course:${existingCourse.courseCode}`);
+    }
+    if (body.courseCode && body.courseCode !== existingCourse.courseCode) {
+      await redisCache.delete(`course:${body.courseCode}`);
+    }
 
     // Clear skill analysis cache when course is updated (optional table)
     try {
@@ -329,7 +339,7 @@ export async function DELETE(
 
     // Resolve real ID first
     const existingCourse = await queryOne<Course>(
-      'SELECT id, title FROM courses WHERE id = ? OR courseCode = ?',
+      'SELECT id, title, courseCode FROM courses WHERE id = ? OR courseCode = ?',
       [paramId, paramId]
     );
 
@@ -358,6 +368,15 @@ export async function DELETE(
         },
         { status: 404 }
       );
+    }
+
+    // Clear cache
+    await redisCache.clearPattern('courses:*');
+    await redisCache.delete(`course:${id}`);
+
+    // Clear by courseCode if available
+    if (existingCourse.courseCode) {
+      await redisCache.delete(`course:${existingCourse.courseCode}`);
     }
 
     return NextResponse.json({

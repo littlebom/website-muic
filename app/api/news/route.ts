@@ -10,6 +10,7 @@ export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
     let institutionId = searchParams.get("institutionId");
+    console.log(`[API News] GET Request - institutionId: ${institutionId}`);
 
     // === AUTH CHECK (Optional for GET, but enforced for Institution Admin view) ===
     const session = await getSession();
@@ -79,8 +80,10 @@ export async function POST(request: NextRequest) {
     // =========================
 
     const body = await request.json();
+    console.log('[API News] POST Body:', JSON.stringify(body, null, 2));
 
     if (!body.title || !body.content || !body.imageId) {
+      console.warn('[API News] POST Missing fields', { title: !!body.title, content: !!body.content, imageId: !!body.imageId });
       return NextResponse.json(
         {
           success: false,
@@ -105,6 +108,7 @@ export async function POST(request: NextRequest) {
       'INSERT INTO news (id, title, content, imageId, institutionId, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)',
       [id, body.title, body.content, body.imageId, institutionId, now, now]
     );
+    console.log(`[API News] Successfully inserted news item with ID: ${id}`);
 
     const newNews = await query(
       'SELECT * FROM news WHERE id = ?',
@@ -122,10 +126,12 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (error) {
+    console.error('[API News] Fatal Error in POST:', error);
     return NextResponse.json(
       {
         success: false,
         error: "Failed to create news",
+        details: error instanceof Error ? error.message : String(error)
       },
       { status: 500 }
     );

@@ -26,7 +26,7 @@ export function SafeImage({
   fallbackType,
   ...props
 }: SafeImageProps) {
-  const { defaultImages } = useDefaultImages();
+  const { defaultImages, loading: settingsLoading } = useDefaultImages();
 
   // State to track the current image source being displayed
   // 0: Initial src
@@ -64,8 +64,8 @@ export function SafeImage({
 
       if (isValidImageUrl(fallback)) {
         setCurrentSrc(fallback);
-      } else {
-        // If default is invalid, go to next level
+      } else if (!settingsLoading) {
+        // Only if default is invalid AND settings are finished loading, go to next level
         setFallbackLevel(2);
       }
     } else if (fallbackLevel === 2) {
@@ -73,7 +73,7 @@ export function SafeImage({
       const text = fallbackType ? fallbackType.charAt(0).toUpperCase() + fallbackType.slice(1) : (alt || 'Image');
       setCurrentSrc(`https://placehold.co/600x400?text=${encodeURIComponent(text)}`);
     }
-  }, [fallbackLevel, defaultImages, fallbackType, src, alt]);
+  }, [fallbackLevel, defaultImages, fallbackType, src, alt, settingsLoading]);
 
   const handleError = () => {
     setFallbackLevel(prev => {

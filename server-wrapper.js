@@ -37,9 +37,15 @@ const MIME_TYPES = {
     '.jpg': 'image/jpeg',
     '.jpeg': 'image/jpeg',
     '.gif': 'image/gif',
+    '.webp': 'image/webp',
     '.svg': 'image/svg+xml',
     '.ico': 'image/x-icon',
-    '.webp': 'image/webp',
+    '.woff': 'application/font-woff',
+    '.woff2': 'application/font-woff2',
+    '.ttf': 'application/font-ttf',
+    '.eot': 'application/vnd.ms-fontobject',
+    '.otf': 'application/font-otf',
+    '.wasm': 'application/wasm',
     '.txt': 'text/plain',
 };
 
@@ -66,6 +72,11 @@ function serveFile(filePath, res) {
 const server = http.createServer((req, res) => {
     const parsedUrl = parse(req.url, true);
     const { pathname } = parsedUrl;
+
+    // Log static file requests for debugging
+    if (pathname.startsWith('/uploads/') || pathname.startsWith('/_next/static/') || pathname.includes('.')) {
+        console.log(`[Wrapper] Static Request: ${pathname}`);
+    }
 
     // 1. Handle .next/static files
     if (pathname.startsWith('/_next/static/')) {

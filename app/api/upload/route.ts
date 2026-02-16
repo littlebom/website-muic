@@ -22,33 +22,37 @@ const TARGET_DIMENSIONS: Record<string, { width: number; height: number }> = {
 
 export async function POST(request: NextRequest) {
   try {
-    const formData = await request.formData();
+    let formData: FormData;
+    try {
+      formData = await request.formData();
+    } catch (formError: any) {
+      console.error("Critical upload error (potentially size limit):", formError);
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Failed to process upload. The file may be too large (Max 50MB) or the request was interrupted."
+        },
+        { status: 413 }
+      );
+    }
+
     const file = formData.get("file") as File;
     const rawImageType = (formData.get("imageType") as string) || "default";
     const imageType = rawImageType.toLowerCase();
 
+    // ... (rest of logging remains same)
     console.log("DEBUG UPLOAD:", {
-      filename: file.name,
+      filename: file?.name,
       rawImageType: `"${rawImageType}"`,
       processedImageType: `"${imageType}"`,
-      isBanner: imageType === 'banner',
-      targetDimensions: TARGET_DIMENSIONS[imageType]
     });
 
     if (!file) {
-      console.error("Upload error: No file provided");
       return NextResponse.json(
         { success: false, error: "No file provided" },
         { status: 400 }
       );
     }
-
-    console.log("File upload attempt:", {
-      name: file.name,
-      type: file.type,
-      size: file.size,
-      imageType,
-    });
 
     // Validate file type - check both MIME type and extension
     const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
@@ -64,12 +68,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate file size (max 10MB)
-    if (file.size > 10 * 1024 * 1024) {
+    // Validate file size (max 50MB)
+    const MAX_SIZE = 50 * 1024 * 1024;
+    if (file.size > MAX_SIZE) {
       console.error("Upload error: File too large:", file.size);
       return NextResponse.json(
-        { success: false, error: "File size must be less than 10MB" },
-        { status: 400 }
+        { success: false, error: `File size (${(file.size / 1024 / 1024).toFixed(2)}MB) exceeds the 50MB limit` },
+        { status: 413 }
       );
     }
 
